@@ -32,8 +32,8 @@ function task1 ($xmlfile)
                 
                 
             }
-        }elseif($q == 'DeliveryNotes'){
-            echo 'Примечание: <strong>' . $xml->DeliveryNotes. '</strong></br></br>';
+        } elseif ($q == 'DeliveryNotes') {
+            echo 'Примечание: <strong>' . $xml->DeliveryNotes . '</strong></br></br>';
         }
         
         
@@ -41,3 +41,7 @@ function task1 ($xmlfile)
 //    echo "<pre>";
 //    print_r ($xml);
 }
+
+
+
+
