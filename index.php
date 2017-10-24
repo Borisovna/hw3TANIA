@@ -2,9 +2,9 @@
 require ('functions.php');
 header ('Content-Type: text/html; charset=utf-8');
 
-echo 'Task1 </br></br>';
-$xmlfile = 'data.xml';
-task1 ($xmlfile);
+//echo 'Task1 </br></br>';
+//$xmlfile = 'data.xml';
+//task1 ($xmlfile);
 
 echo '<hr> Task2 </br>';
 $json_data = [
@@ -33,8 +33,8 @@ foreach ($result as $key => $value) {
 }
 
 echo '<hr> Task3 </br>';
-echo '<a href="?action=read">Read and count</a> ';
-echo '<a href="?action=write">Write</a><br/><br/>';
+echo '<a href="?action=read">Просумировать нечетные числа</a> ';
+echo '<a href="?action=write">Сгенерировать массив случайных чисел</a><br/><br/>';
 if (empty($_GET['action'])) {
     die('no action');
 }
@@ -52,10 +52,11 @@ switch ($action) {
         echo 'Файл успешно записан';
         break;
     
-    default:
+    default: if (filesize ('./test.csv')!==0){
         $csvPath = './test.csv';
         $csvFile = fopen ($csvPath, "r");
         $data = fgetcsv ($csvFile, 100, ",");
+        fclose ($csvFile);
         $sum = 0;
         for ($i = 0; $i < count ($data); $i++) {
             if ($data[$i] % 2 != 0) {
@@ -65,7 +66,7 @@ switch ($action) {
         }
         
         echo '=' . $sum;
-        break;
+        break;}
 };
 echo '<pre>';
 print_r ($data);
