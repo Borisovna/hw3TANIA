@@ -33,13 +33,22 @@ $json_string2 = file_get_contents ($filename);//
 echo '</br>';
 $arr2 = json_decode ($json_string, true);
 $arr = json_decode ($json_string2, true);//если есть второй аргумент мы получим ассоциативный массив
-$arr['id'] = 2;
+
+$flag = rand (0, 1);
+echo $flag . '<br>';
+
+if ($flag == true) {
+    $arr['id'] = rand (0, 100);
+}
+
 $strjson2 = json_encode ($arr);
 $filename2 = 'output2.json';
 fopen ('output2.json', 'w');
 file_put_contents ($filename2, $json_string2);
 
 $result = array_diff_assoc ($arr, $arr2);
+echo "<pre>";
+print_r ($result);
 foreach ($result as $key => $value) {
     echo 'Файлы .json отличаются в ключе ' . $key . ' в первом массиве значение этого ключа равно ' . $arr[$key] . " , а во втором массиве равно  " . $arr2[$key] . '</br>';
 }
