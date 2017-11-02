@@ -4,7 +4,7 @@ header ('Content-Type: text/html; charset=utf-8');
 
 echo 'Task1 </br></br>';
 $xmlfile = 'data.xml';
-task1 ($xmlfile);
+//task1 ($xmlfile);
 
 echo '<hr> Task4 </br>';
 $url = 'https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json';
@@ -19,39 +19,27 @@ echo '<br>Вывожу title - <strong>' . $arr_e['query']['pages']['15580374'][
 
 
 echo '<hr> Task2 </br>';
-$json_data = [
-    'id'      => 1,
-    'name'    => "vasya",
-    'country' => 'Russia',
-    "office"  => ["googl", " management"]
-];
-$json_string = json_encode ($json_data);//строку превратили в строку json
-$filename = 'output.json';
-fopen ('output.json', 'w');// открыли создали файл .json
-file_put_contents ($filename, $json_string);// записали строку .json в файл
-$json_string2 = file_get_contents ($filename);//
-echo '</br>';
-$arr2 = json_decode ($json_string, true);
-$arr = json_decode ($json_string2, true);//если есть второй аргумент мы получим ассоциативный массив
+task2 ();
 
-$flag = rand (0, 1);
-echo $flag . '<br>';
+//
+//$flag = rand (0, 1);
+//echo $flag . '<br>';
+//
+//if ($flag == true) {
+//    $arr['id'] = rand (0, 100);
+//}
+//
+//$strjson2 = json_encode ($arr);
 
-if ($flag == true) {
-    $arr['id'] = rand (0, 100);
-}
-
-$strjson2 = json_encode ($arr);
-$filename2 = 'output2.json';
-fopen ('output2.json', 'w');
-file_put_contents ($filename2, $json_string2);
-
-$result = array_diff_assoc ($arr, $arr2);
-echo "<pre>";
-print_r ($result);
-foreach ($result as $key => $value) {
-    echo 'Файлы .json отличаются в ключе ' . $key . ' в первом массиве значение этого ключа равно ' . $arr[$key] . " , а во втором массиве равно  " . $arr2[$key] . '</br>';
-}
+//fopen ('output2.json', 'w');
+//file_put_contents ($filename2, $json_string2);
+//
+//$result = array_diff_assoc ($arr, $arr2);
+//echo "<pre>";
+//print_r ($result);
+//foreach ($result as $key => $value) {
+//    echo 'Файлы .json отличаются в ключе ' . $key . ' в первом массиве значение этого ключа равно ' . $arr[$key] . " , а во втором массиве равно  " . $arr2[$key] . '</br>';
+//}
 
 echo '<hr> Task3 </br>';
 echo '<a href="?action=read">Просумировать нечетные числа</a> ';

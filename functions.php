@@ -29,17 +29,65 @@ function task1 ($xmlfile)
                 if (!empty($comment)) {
                     echo "Комментарий груза: " . $comment . '</br></br>';
                 }
-                
-                
+
+
             }
         } elseif ($q == 'DeliveryNotes') {
             echo 'Примечание: <strong>' . $xml->DeliveryNotes . '</strong></br></br>';
         }
-        
-        
+
+
     }
 //    echo "<pre>";
 //    print_r ($xml);
+}
+
+function task2 ()
+{
+    $json_data = [
+        'id'      => 1,
+        'name'    => "vasya",
+        'country' => [
+            'Rus' => ['Piter', 'Moskow', 'Gorod'],
+            'UA'  => [
+                'Kiev',
+                'Odessa' => ['Tatarbunary', 'Arzyz', 'Bielgorod']
+            ],
+            'Trewq'],
+        "office"  => ["googl", " management"]
+    ];
+    $json_string = json_encode ($json_data);//строку превратили в строку json
+    $filename = 'output.json';
+    fopen ('output.json', 'w');// открыли создали файл .json
+    file_put_contents ($filename, $json_string);// записали строку .json в файл
+    $json_string2 = file_get_contents ($filename);//
+    echo '</br>';
+    $arr2 = json_decode ($json_string, true);
+
+//рекурсивная функция которая переберает эл.массива, еи если ел.масиив она сама себя вызивает
+    function recur_random (&$array)
+    {
+        foreach ($array as $key => $value) {
+            if (gettype ($value) == "array") {
+                $array[$key] = recur_random ($value);
+            } else {
+                if (rand (0, 1) == true) {
+                    $array[$key] = "Произошла замена";
+                    
+                }
+            }
+        }
+        
+        return $array;
+    }
+    
+    $arr = recur_random ($arr2);
+    $filename2 = 'output2.json';
+    file_put_contents ($filename2, json_encode ($arr));
+    $file_get = file_get_contents ($filename2);
+    $arr_file_get = json_decode ($file_get, true);
+    echo "<pre>";
+    print_r ($arr_file_get);
 }
 
 function task4 ($url, $file)
